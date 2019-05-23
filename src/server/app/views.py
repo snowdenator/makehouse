@@ -113,7 +113,7 @@ def suppliers():
         try:
             response = []
             logging.debug("Trying to return a list of suppliers")
-            for supplier in Suppliers.select().dicts():
+            for supplier in Suppliers.select().order_by(Suppliers.supplier_number).dicts():
                 response.append(supplier)
             return jsonify(response)
         except Exception as e:
@@ -246,7 +246,7 @@ def parts():
         try:
             response = []
             logging.debug("Trying to return a list of parts")
-            for part in Parts.select():
+            for part in Parts.select().order_by(Parts.stock_number):
                 response.append(shortcuts.model_to_dict(part))
             return jsonify(response)
         except Exception as e:
@@ -418,4 +418,20 @@ def modify_parts(p_number):
                 "message": "An error occured: {}".format(e)
             }
             logging.error("Failed to update part {}: {}".format(p_number, e))
+            return jsonify(response), 500
+
+    if request.method == 'DELETE':
+        #Delete part
+        try:
+            logging.debug("Trying to delete part {}".format(p_number))
+            part = Parts.select().where(Parts.stock_number == p_number).get()
+            part.delete_instance()
+
+            return '', 204
+        except Exception as e:
+            response = {
+                "status": "error",
+                "message": "An error occured: {}".format(e)
+            }
+            logging.error("Failed to delete part {}: {}".format(p_number, e))
             return jsonify(response), 500

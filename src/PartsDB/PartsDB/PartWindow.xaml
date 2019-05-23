@@ -1,0 +1,44 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PartsDB"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:Types="clr-namespace:PartsDB.Types;assembly=PartsDB" x:Class="PartsDB.PartWindow"
+        mc:Ignorable="d"
+        Title="Part" Height="600" Width="400">
+    <Grid>
+        <Label Content="Stock number" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="112"/>
+        <Label Content="Stock level" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="112"/>
+        <Label Content="Description" HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="112"/>
+        <Label Content="Manufacturer" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="112"/>
+        <Label Content="MPN" HorizontalAlignment="Left" Margin="10,126,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="112"/>
+        <Label Content="Pref. supplier" HorizontalAlignment="Left" Margin="10,152,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="112"/>
+        <Label Content="Supplier 1" HorizontalAlignment="Left" Margin="10,178,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="112"/>
+        <Label Content="Supplier 1 PN" HorizontalAlignment="Left" Margin="10,204,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="112"/>
+        <Label Content="Supplier 1 price" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="112"/>
+        <Label Content="Supplier 1 min. qty." HorizontalAlignment="Left" Margin="10,256,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+        <Label Content="Supplier 2" HorizontalAlignment="Left" Margin="10,294,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="112"/>
+        <Label Content="Supplier 2 PN" HorizontalAlignment="Left" Margin="10,320,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="112"/>
+        <Label Content="Supplier 2 price" HorizontalAlignment="Left" Margin="10,346,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="112"/>
+        <Label Content="Supplier 2 min. qty." HorizontalAlignment="Left" Margin="10,372,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="StockNumberTextBox" HorizontalAlignment="Left" Height="23" Margin="127,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="256" IsEnabled="False"/>
+        <xctk:IntegerUpDown x:Name="StockLevelUpDown" Margin="127,39,10.333,498.667" DefaultValue="0" DisplayDefaultValueOnEmptyText="True" Minimum="0"/>
+        <TextBox x:Name="DescriptionTextBox" HorizontalAlignment="Left" Height="23" Margin="127,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="256"/>
+        <TextBox x:Name="ManufacturerTextBox" HorizontalAlignment="Left" Height="23" Margin="127,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="256"/>
+        <TextBox x:Name="MpnTextBox" HorizontalAlignment="Left" Height="23" Margin="127,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="256"/>
+        <ComboBox x:Name="PrefSupplierComboBox" HorizontalAlignment="Left" Height="23" Margin="127,155,0,0" VerticalAlignment="Top" Width="256"/>
+        <ComboBox x:Name="Supplier1ComboBox" HorizontalAlignment="Left" Height="23" Margin="127,181,0,0" VerticalAlignment="Top" Width="256"/>
+        <TextBox x:Name="Supplier1PnTextBox" HorizontalAlignment="Left" Height="23" Margin="127,206,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="256"/>
+        <TextBox x:Name="Supplier1PriceTextBox" HorizontalAlignment="Left" Height="23" Margin="127,233,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="256"/>
+        <xctk:IntegerUpDown x:Name="Supplier1MinQtyUpDwn" Margin="127,259,10.333,276.667" DefaultValue="1" DisplayDefaultValueOnEmptyText="True" Minimum="0"/>
+        <ComboBox x:Name="Supplier2ComboBox" HorizontalAlignment="Left" Height="23" Margin="127,297,0,0" VerticalAlignment="Top" Width="256"/>
+        <TextBox x:Name="Supplier2PnTextBox" HorizontalAlignment="Left" Height="23" Margin="127,322,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="256"/>
+        <TextBox x:Name="Supplier2PriceTextBox" HorizontalAlignment="Left" Height="23" Margin="127,349,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="256"/>
+        <xctk:IntegerUpDown x:Name="Supplier2MinQtyUpDwn" Margin="127,375,10.333,161.667" DefaultValue="1" DisplayDefaultValueOnEmptyText="True" Minimum="0"/>
+        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Margin="228,414,0,0" VerticalAlignment="Top" Width="75" Click="SaveButton_Click"/>
+        <Button x:Name="DeleteButton" Content="Delete" HorizontalAlignment="Left" Margin="308,414,0,0" VerticalAlignment="Top" Width="75" Click="DeleteButton_Click"/>
+        <Button x:Name="PrintButton" Content="Print" HorizontalAlignment="Left" Margin="148,414,0,0" VerticalAlignment="Top" Width="75" Click="PrintButton_Click"/>
+    </Grid>
+</Window>
