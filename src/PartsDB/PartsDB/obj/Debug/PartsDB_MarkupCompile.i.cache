@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-\\dc01.home.snowdenlabs.co.uk\X\Users\callum.snowden\Documents\GitHub\makehouse\src\PartsDB\PartsDB\obj\Debug\
+C:\Users\Callum\Documents\GitHub\makehouse\src\PartsDB\PartsDB\obj\Debug\
 PartsDB
 none
 false
 DEBUG;TRACE
-\\dc01.home.snowdenlabs.co.uk\X\Users\callum.snowden\Documents\GitHub\makehouse\src\PartsDB\PartsDB\App.xaml
+C:\Users\Callum\Documents\GitHub\makehouse\src\PartsDB\PartsDB\App.xaml
 5321746992
 11258893151
-121640086749
-21586266992
+12-926798418
+21-1461214325
 FinderWindow.xaml;LoginWindow.xaml;PartWindow.xaml;SettingsWindow.xaml;SupplierWindow.xaml;
 
 False
