@@ -32,7 +32,7 @@ namespace PartsDB
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
-        {
+        { 
             ConfigurationManager.AppSettings["server_address"] = ServerTextBox.Text;
             ConfigurationManager.AppSettings["domain"] = DomainTextBox.Text;
             ConfigurationManager.AppSettings["printer_port"] = PrinterPortTextBox.Text;

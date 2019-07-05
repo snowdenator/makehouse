@@ -277,7 +277,7 @@ namespace PartsDB
                 LabelVariables.Add("@PartMfg@", PartManufacturer);
                 LabelVariables.Add("@PartNumber@", PartNumber);
 
-                string PrinterData = Utils.CommandDataReplace(AppDomain.CurrentDomain + "45x35_PartNumberLabel.prn", LabelVariables);
+                string PrinterData = Utils.CommandDataReplace(AppDomain.CurrentDomain.BaseDirectory + "48x35_PartNumberLabel.prn", LabelVariables);
 
                 LabelPrinter.Send(Encoding.Unicode.GetBytes(PrinterData));
             }
