@@ -11,7 +11,7 @@ import simple_auth
 import time
 import logging
 
-logging.basicConfig(format='%(asctime)s - %(name)s, %(levelname)s: %(message)s', level=logging.DEBUG)
+logging.basicConfig(format='%(asctime)s - %(name)s, %(levelname)s: %(message)s', level=logging.INFO)
 
 def session_required(f):
     @wraps(f)
@@ -22,11 +22,11 @@ def session_required(f):
             if session.exists():
                 session = session.get()
                 if int(time.time()) < session.login_time + app.config['SESSION_TIMEOUT']:
-                    logging.debug("Session {} authorized".format(session.session))
+                    logging.info("Session {} authorized".format(session.session))
                     return f(*args, **kwargs)
                 else:
                     session = Sessions.get(Sessions.session == session_id)
-                    logging.debug("Timeout on session {} belonging to user {}".format(session.session, session.username))
+                    logging.warning("Timeout on session {} belonging to user {}".format(session.session, session.username))
                     session.delete_instance()
                     response = {
                         "status": "error",
@@ -38,13 +38,14 @@ def session_required(f):
                     "status": "error",
                     "message": "Invalid session ID"
                 }
-                logging.debug("Invalid session ID {} used".format(session_id))
+                logging.warning("Invalid session ID {} used".format(session_id))
                 return jsonify(response), 403
         else:
             response = {
                 "status": "error",
                 "message": "No session ID"
             }
+            logging.warning("No session ID supplied")
             return jsonify(response), 403
     return decorated_function
 
@@ -80,7 +81,7 @@ def sessions():
             "message": "Invalid login credentials"
             }
 
-            logging.info("User {} failed to login".format(request.authorization.username))
+            logging.warning("User {} failed to login".format(request.authorization.username))
 
             return jsonify(response), 403
 
@@ -91,7 +92,7 @@ def sessions():
             if session.exists():
                 session = Sessions.get(Sessions.session == session_id)
 
-                logging.debug("Deleting session {} belonging to user {}".format(session.session, session.username))
+                logging.info("Deleting session {} belonging to user {}".format(session.session, session.username))
 
                 session.delete_instance()
                 return '', 204
@@ -100,6 +101,7 @@ def sessions():
                 "status": "error",
                 "message": "Invalid session ID"
                 }
+                logging.warning("Could not delete session {} - invalid session ID".format(session.session))
 
                 return jsonify(response), 403
 
@@ -112,7 +114,7 @@ def suppliers():
         # We want to return a list of suppliers here
         try:
             response = []
-            logging.debug("Trying to return a list of suppliers")
+            logging.info("Trying to return a list of suppliers")
             for supplier in Suppliers.select().order_by(Suppliers.supplier_number).dicts():
                 response.append(supplier)
             return jsonify(response)
@@ -128,13 +130,14 @@ def suppliers():
     if request.method == 'POST':
         # Create a new supplier
         try:
-            logging.debug("Trying to create a new supplier")
+            logging.info("Trying to create a new supplier")
             s_name = ''
             s_contact = ''
             s_website = ''
 
             if len(request.form) == 0:
                 raise Exception("No supplier data sent!")
+                logging.error("Could not create new supplier - no data sent")
 
             if 'supplier_name' in request.form:
                 s_name = request.form['supplier_name']
@@ -168,7 +171,7 @@ def modify_suppliers(s_number):
     if request.method == 'GET':
         # Return requested supplier
         try:
-            logging.debug("Trying to return supplier {}".format(s_number))
+            logging.info("Trying to return supplier {}".format(s_number))
             supplier = Suppliers.select().where(Suppliers.supplier_number == s_number).get()
 
             if supplier == 0:
